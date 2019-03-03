@@ -708,9 +708,9 @@ class Instruction_SUBC(Type3Instruction):
     def overflow(self, src, dst, ret):
         # TODO: This is probably wrong
         if self.data['b'] == '0':
-            return (ret[15] ^ src[15]) & (ret[15] ^ dst[15])
+            return (ret[15] ^ src[15]) & (src[15] ^ dst[15])
         else:
-            return (ret[7] ^ src[7]) & (ret[7] ^ dst[7])
+            return (ret[7] ^ src[7]) & (src[7] ^ dst[7])
 
     def carry(self, src, dst, ret):
         return dst > (src + self.get_carry())
@@ -726,9 +726,9 @@ class Instruction_SUB(Type3Instruction):
     def overflow(self, src, dst, ret):
         # TODO: This is probably wrong
         if self.data['b'] == '0':
-            return (ret[15] ^ src[15]) & (ret[15] ^ dst[15])
+            return (ret[15] ^ src[15]) & (src[15] ^ dst[15])
         else:
-            return (ret[7] ^ src[7]) & (ret[7] ^ dst[7])
+            return (ret[7] ^ src[7]) & (src[7] ^ dst[7])
 
     def carry(self, src, dst, ret):
         return dst > src
